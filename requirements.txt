@@ -1,0 +1,10 @@
+requests>=2.31.0
+flask>=3.0.0
+paho-mqtt>=2.0.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+numpy>=1.24.0
+seaborn>=0.12.0
+aiocoap>=0.4.16
+pymodbus>=3.11.3
+

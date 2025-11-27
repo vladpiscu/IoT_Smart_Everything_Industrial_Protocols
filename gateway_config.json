@@ -1,0 +1,78 @@
+{
+  "csv_filename": "gateway_data.csv",
+  "logging": {
+    "level": "INFO"
+  },
+  "network": {
+    "loss_rate": 0.1,
+    "latency_range_ms": [10, 250],
+    "failure_probability": 0.1,
+    "failure_duration_range_s": [5.0, 15.0]
+  },
+  "coap": {
+    "enabled": true,
+    "device": {
+      "device_id": "wearable_coap_1",
+      "sensor": "heart_rate",
+      "interval_s": 1.0,
+      "endpoint": "coap://localhost:5683/sensor",
+      "value_range": [65, 90],
+      "data_source": "dataset",
+      "dataset_path": "health.csv"
+    },
+    "proxy": {
+      "enabled": true,
+      "listen_host": "localhost",
+      "listen_port": 56830,
+      "upstream_host": "localhost",
+      "upstream_port": 5683
+    }
+  },
+  "modbus": {
+    "enabled": true,
+    "host": "localhost",
+    "port": 5020,
+    "devices": [
+      {
+        "unit_id": 2,
+        "device_id": "modbus_air_quality_1",
+        "sensor": "air_quality",
+        "interval_s": 2.0,
+        "start_address": 10,
+        "register_count": 1,
+        "dataset_path": "AirQualityUCI.csv",
+        "column": "PT08.S1(CO)"
+      }
+    ],
+    "proxy": {
+      "enabled": true,
+      "listen_host": "localhost",
+      "listen_port": 15020,
+      "upstream_host": "localhost",
+      "upstream_port": 5020
+    }
+  },
+  "mqtt": {
+    "enabled": true,
+    "broker": "localhost",
+    "port": 1883,
+    "topic": "iot",
+    "keepalive": 60,
+    "device_interval": 1.0,
+    "devices": [
+      {
+        "sensor": "temperature",
+        "count": 1
+      }
+    ],
+    "proxy": {
+      "enabled": true,
+      "listen_host": "localhost",
+      "listen_port": 18830,
+      "upstream_host": "localhost",
+      "upstream_port": 1883
+    }
+  }
+}
+
+
